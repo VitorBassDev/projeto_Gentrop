@@ -32,9 +32,11 @@ module.exports ={
   async usersRepositoryGeneralGit (request, response) {
     const {name} = request.body
 
+    const page = 1
+    const per_page = 4
     try {
       
-      const {data} = await apiGitHub.get(`${name}/repos`)
+      const {data} = await apiGitHub.get(`${name}/repos?page=${page}&per_page=${per_page}`)
         
         if(data){
 
