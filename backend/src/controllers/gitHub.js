@@ -16,13 +16,13 @@ module.exports ={
             data: data
           })
           }else {
-            return response.status(500).json({
+            return response.status(404).json({
               error: true,
               message: "Repositório não encontrado"
             })
           }
       } catch (error) {
-        return response.status(404).json({
+        return response.status(500).json({
           message: "Erro ao consumir a API",
           error: error.message
         })
@@ -36,14 +36,15 @@ module.exports ={
     const per_page = 4
     try {
       
-      const {data} = await apiGitHub.get(`${name}/repos?page=${page}&per_page=${per_page}`)
-        
+      // const {data} = await apiGitHub.get(`${name}/repos?page=${page}&per_page=${per_page}`)
+      const {data} = await apiGitHub.get(`${name}/repos`)
+      console.log(data)
         if(data){
 
-          return response.status(200).json({
+          return response.json({
             error: false,
             message: "Repositórios do Usuário Selecionado",
-            data
+            dados: data
           })
           }else {
             return response.json({

@@ -3,6 +3,8 @@ require('dotenv/config')
 const express   = require('express')
 const cors      = require('cors')
 const routes    = require('./router')
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('../swagger_output.json')
 
 // CONFIGURAÇÃO PARA UTILIZAÇÃO DO EXPRESS
 const app = express()
@@ -10,11 +12,11 @@ const app = express()
 // CONFIGURAÇÃO DE TIPO DE FORMATO DE DADOS
 app.use(express.json())
 
-// HABILITAR REQUISIÇÕES EXTERNAS
-app.use(cors())
-
 // // HABILITAR UTILIZAÇÃO DO ARQUIVO DE ROTAS
 app.use(routes)
+
+// HABILITAR REQUISIÇÕES EXTERNAS
+app.use(cors())
 
 //
 app.use( (req, res , next) => {
@@ -37,3 +39,7 @@ app.get('/', (request, response) => {
 app.listen(process.env.BACKEND_PORT, () => {
   console.log(`Backend run is`, process.env.BACKEND_PORT)
 })
+
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
+
+require('./router')
