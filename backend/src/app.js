@@ -12,9 +12,6 @@ const app = express()
 // CONFIGURAÇÃO DE TIPO DE FORMATO DE DADOS
 app.use(express.json())
 
-// // HABILITAR UTILIZAÇÃO DO ARQUIVO DE ROTAS
-app.use(routes)
-
 // HABILITAR REQUISIÇÕES EXTERNAS
 app.use(cors())
 
@@ -28,6 +25,8 @@ app.use( (req, res , next) => {
   next();
 });
 
+// // HABILITAR UTILIZAÇÃO DO ARQUIVO DE ROTAS
+app.use(routes)
 
 // ROTA INICIAL DA APLICAÇÃO
 app.get('/', (request, response) => {
