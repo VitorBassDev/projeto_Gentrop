@@ -1,4 +1,3 @@
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
 ## 💻 Sobre o Projeto
 
@@ -54,7 +53,7 @@ Aplicação desenvolvida utilizando a bilbioteca `React` em conjunto com o `fram
 
 
 ## 🚧 Features
-- [x] A Principal Feature do em geral, é a busca por repositórios do GitHub de um usuário pré definido na rota do Backend, através da cominicação do frontend com o backend, onde este último, por sua vez, realiza a comunicação com a API do GitHub.
+- [x] A Principal Feature no modo geral, é a busca por repositórios do GitHub de um usuário pré definido na rota do Backend, através da cominicação do frontend com o backend, onde este último, por sua vez, realiza a comunicação com a API do GitHub.
 
 ## 🚧 Melhorias que poderiam serem implementadas
 -  Link para envio de email (Implementação no FronEnd).(Implementação no FronEnd)
