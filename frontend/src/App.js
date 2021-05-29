@@ -12,7 +12,7 @@ function App() {
 
   async function loadProjects(){
     try{
-      const response = await connectionApi.get(`usersGit`)
+      const response = await connectionApi.get(`userIndex`)
       setProjects(response.data)
       console.log(response.data)
     } catch(err){
@@ -33,29 +33,15 @@ function App() {
       <div className="jumbotron text-center">
         <h1>Consumindo a API do GitHub</h1>
         <p className="lead"> 
-          Por padrão, está página busca automáticamente os repositórios do usuário VittorBassDev !
-        </p>
-        <p>
-          Para pesquisar outro usuário preenha o fomulário abaixo.
+          <div className="alert alert-primary" role="alert">
+          Por padrão, está página busca automáticamente os repositórios do GitHub do usuário 
+            <a href="https://github.com/VitorBassDev" className="alert-link">VittorBassDev !</a>
+            <p>
+              A busca é realizado pelos 4 primeiros repositórios.
+            </p>
+          </div>  
         </p>
 
-        <div className="row p-2 justify-content-center mb-2 ">
-          <div className="col-md-5 " onSubmit="">
-            <form className="form-inline mt-2 mt-md-0">      
-              <input 
-                class="form-control mr-sm-2" 
-                type="text"
-                placeholder="Nome do usuário"
-                />
-              <button 
-                className="btn btn-md btn-primary mt-3" 
-                type="submit" 
-                >
-                  Buscar »
-              </button>  
-            </form>
-          </div>
-        </div> 
       </div>
     
       { projects.length > 0 &&
