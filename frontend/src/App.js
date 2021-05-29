@@ -1,23 +1,22 @@
 import React, {useEffect, useState} from 'react';
-import axios from 'axios'
+//import axios from 'axios'
 import connectionApi from '../src/services/connectionGitHub'
 
 function App() {
 
   const [ projects, setProjects ] = useState([])
 
-  useEffect(() => {
+   useEffect(() => {
     loadProjects()
   }, [])    
 
   async function loadProjects(){
     try{
       const response = await connectionApi.get(`usersGit`)
-      // const response = await axios.get(`https://api.github.com/users/VitorBassDev/repos`)
       setProjects(response.data)
       console.log(response.data)
     } catch(err){
-      alert('It was not possible to find projects!')
+      alert('Não foi possível Localizar os projetos!')
     }
   }
 
@@ -56,31 +55,30 @@ function App() {
               </button>  
             </form>
           </div>
-        </div>
-          
+        </div> 
       </div>
-    </main>
-
-    { projects.length > 0 &&
-
-    <div className="container">
-      {projects.map(project => (
-
-      <div className="row">
-        <div className="col-md-6">
-          <h2>Nome do Projeto: </h2> 
-          <p>{project.name}</p>         
-          <p>
-            {project.language}
-          </p>
-          
-        </div>
-
-      </div>
-      ))}
-    </div>
-    }
+    
+      { projects.length > 0 &&
+        <div>
+        {projects.map(project => (
       
+        <div className="mx-auto col-md-6">
+          <div className="card flex-md-row mb-4 box-shadow h-md-250 text-white bg-dark">
+            <div className="card-body d-flex flex-column align-center">
+              <strong className="d-inline-block mb-2 text-danger">Respositório</strong>
+              <h3 className="mb-0">
+                {project.name}
+              </h3>
+              <div className="mt-2 mb-1 text-muted">{project.language}</div>
+              <p className="card-text mb-auto">{project.description}</p>
+              <a href={project.html_url} className="link-info"> {project.html_url}</a>
+            </div>
+          </div>
+        </div>
+        ))}
+        </div>
+      }
+    </main>
   </div>
   </>
   );
