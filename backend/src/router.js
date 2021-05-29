@@ -4,13 +4,12 @@ const routes  = express.Router()
 /**
  * IMPORTAÇÃO DAS ROTAS
  */
- const controllerGit = require('./controllers/gitHub')
+ const controllerGitHub = require('./controllers/gitHub')
  
 /**
  * ROTAS DA APLICAÇÃO 
  */
 
- routes.get('/usersGit', controllerGit.usersGit)
- routes.get('/usersRepositoryGeneral', controllerGit.usersRepositoryGeneralGit)
- 
+ routes.get('/userIndex', controllerGitHub.userIndex)
+  
 module.exports = routes

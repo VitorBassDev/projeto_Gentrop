@@ -2,54 +2,25 @@ require('dotenv/config')
 const apiGitHub = require('../service/apiExterna')
 module.exports ={
   
-  async usersGit (request, response) {
-
-  try{
-    const {data} = await apiGitHub.get(`VitorBassDev/repos`)
-    if(data){
-      return response.send(data)
-      }else {
-        return response.json({
-          error: true,
-          message: "Repositório não encontrado",
-        })
-      }
-  } catch (error) {
-    return response.json({
-      message: "Erro ao consumir a API",
-      error: error.message
-    })
-  }
-  },
-
-  async usersRepositoryGeneralGit (request, response) {
-    const {name} = request.body
-
+  async userIndex (request, response) {
     const page = 1
     const per_page = 4
-    try {
-      
-      // const {data} = await apiGitHub.get(`${name}/repos?page=${page}&per_page=${per_page}`)
-      const {data} = await apiGitHub.get(`${name}/repos`)
-      console.log(data)
-        if(data){
 
+    try{
+      const {data} = await apiGitHub.get(`VitorBassDev/repos?page=${page}&per_page=${per_page}`)
+      if(data){
+        return response.json(data)
+        }else {
           return response.json({
-            error: false,
-            message: "Repositórios do Usuário Selecionado",
-            dados: data
+            error: true,
+            message: "Usuário Ou respositório não encontrado não encontrado",
           })
-          }else {
-            return response.json({
-              error: true,
-              message: "Repositório não encontrado",
-            })
-          }
+        }
       } catch (error) {
         return response.json({
           message: "Erro ao consumir a API",
           error: error.message
         })
-      }
-  }
+    }
+  },
 }
